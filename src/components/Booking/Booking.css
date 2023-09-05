@@ -1,20 +1,98 @@
 /* Add this to your CSS */
-.booked {
-  background-color: red; /* Set the background color to red for booked seats */
-  color: white; /* Set the text color to white for better visibility */
-  pointer-events: none; /* Disable pointer events for booked seats */
+
+/* Booking.css */
+
+/* Define the styles for booked seats */
+
+.seat.booked {
+  color: #e74c3c; /* Change the seat icon color to orange */
+  background-color: transparent; /* Make the background transparent */
 }
 
-.selected {
-  background-color: green; /* Set the background color to green for selected seats */
-  color: white; /* Set the text color to white for better visibility */
+/* Define the styles for selected seats */
+.seat.selected {
+  color: var(--green); /* Change the seat icon color to green */
+  background-color: transparent; /* Make the background transparent */
 }
+
 
 .theater {
   margin-top: 50px; /* Adjust the value as needed */
 }
 
-.next-button{
+
+
+.seat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.seat-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Increase margin between rows */
+}
+
+.row-letter {
+  font-size: 18px; /* Decrease the font size for row letters */
+  font-weight: bold;
+  margin-right: 20px; /* Increase margin between row letters */
+}
+
+.seat {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-right: 18px; /* Increase the margin between seats by 0.5 times */
+  color: #100f0f;
+  font-size: 12px; /* Decrease the font size for seats */
+  font-family: 'Arial', sans-serif;
+}
+
+
+
+.seat:hover {
+  background-color: var(--green);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Increase the box shadow on hover */
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+/* Add a screen view at the bottom */
+.screen-view {
   margin-top: 20px;
-  width: 200px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.next-button {
+  background-color: #e74c3c
+;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  /* Hover effect */
+  &:hover {
+    background-color: #e74c3c;
+    transform: scale(1.05); /* Add a slight scale effect on hover */
+  }
+
+  /* Active effect */
+  &:active {
+    transform: scale(0.95); /* Add a slight scale effect on active/clicked state */
+  }
+
 }

@@ -1,0 +1,72 @@
+/* Signup Container */
+
+.sign-container{
+    padding: 0;
+    background: linear-gradient(to bottom right, #ffc0cb, #ffa07a, #87cefa);
+    font-family: Arial, sans-serif; /* You can change the font family to your preference */
+    min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.signup-container {
+    width: 100%; /* Specify a width if needed */
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #bbb3b3;
+    border-radius: 5px;
+    background-color:#fff;
+
+    box-shadow: #ccc;
+  }
+  
+  /* Signup Title */
+  .signup-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Signup Input Fields */
+  .signup-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  /* Signup Submit Button */
+  .signup-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f06e11;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .signup-button:hover {
+    background-color: #ead51b;
+  }
+  
+  /* Link to Login Page */
+  .link-to-login {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .link-to-login:hover {
+    text-decoration: underline;
+  }
+
+  

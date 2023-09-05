@@ -3,7 +3,7 @@ import Body from './Body'
 import Header from './Header';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import './Home.css'
 function Home() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -32,9 +32,9 @@ function Home() {
     });
 
   return (
-    <div className="App">
+    <div className="Home">
     <Header/>
-      <h1>Movie Names</h1>
+      <h1>Welcome to Cinemate</h1>
       <div className="search-bar">
         <input
           type="text"
@@ -54,7 +54,9 @@ function Home() {
           ))}
         </select>
       </div>
-      <div className="movie-list">
+      <br/>
+      <br/>
+            <div className="movie-list">
         {filteredData.map((movie) => (
           <Body key={movie.movie_name} movie={movie} searchTerm={searchTerm} selectedYear={selectedYear} />
         ))}

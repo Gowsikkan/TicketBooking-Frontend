@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCouch } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Booking.css';
 
-const numRows = 5;
-const numSeatsPerRow = 10;
+const numRows = 8;
+const numSeatsPerRow = 16;
 const seatPrice = 100;
 
 function Booking() {
   const navigate = useNavigate();
-  
+
   const cartItem = JSON.parse(sessionStorage.getItem('cartItem'));
 
-  // Extract the theaterName from the cartItem
+  // Extract movieName, theaterName, and date from the cartItem
+  const movieName = cartItem ? cartItem.movieName : 'Default Movie';
   const theaterName = cartItem ? cartItem.theatreName : 'Default Theater';
-  
-  //const { theaterName } =  sessionStorage.getItem(theaterName);
-  //const theaterName = ''; // Hardcoded theater name for this example
-  // Get the theater name from the URL params
+
   const [seats, setSeats] = useState(() => {
     const initialSeats = [];
     for (let row = 0; row < numRows; row++) {
@@ -34,7 +32,8 @@ function Booking() {
 
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [bookedSeats, setBookedSeats] = useState([]);
-
+  console.log(bookedSeats )
+  
   const toggleSeat = (rowIndex, seatIndex) => {
     const updatedSeats = [...seats];
     const seat = updatedSeats[rowIndex][seatIndex];
@@ -70,47 +69,56 @@ function Booking() {
 
       await axios.post(`https://easytickets.onrender.com/selected-seats?theatre=${theaterName}`, selectedSeatsData);
 
-      alert(`Proceed to payment. Total Cost: ${totalCost} USD`);
-      if(sessionStorage.getItem('username')!=null){
+      // Store the movie name, theater name, selected seats, and total cost in session
+      sessionStorage.setItem('movieName', movieName);
+      sessionStorage.setItem('theaterName', theaterName);
+      sessionStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
+      sessionStorage.setItem('totalCost', totalCost);
+
+      if (sessionStorage.getItem('username') != null) {
         navigate('/confirmation');
+      } else {
+        navigate('/');
       }
-      else{
-        navigate('/')
-      }
-      
     } catch (error) {
       console.error('Error storing selected seats:', error);
     }
   };
 
   // Function to fetch and log already booked seats from the database
-  const fetchBookedSeats = async () => {
-    try {
-      const response = await axios.get(`https://easytickets.onrender.com/booked-seats?theatre=${theaterName}`);
-      const bookedSeatsData = response.data;
-      console.log('Booked Seats:', bookedSeatsData);
+  // Function to fetch and log already booked seats from the database
+const fetchBookedSeats = async () => {
+  try {
+    const response = await axios.get(`https://easytickets.onrender.com/booked-seats?theatre=${theaterName}`);
+    const bookedSeatsData = response.data;
+    console.log('Booked Seats:', bookedSeatsData);
 
-      // Update the booked seats in the state to reflect the fetched data
-      const updatedSeats = [...seats];
-      bookedSeatsData.forEach(bookedSeat => {
+    // Update the booked seats in the state to reflect the fetched data
+    const updatedSeats = [...seats];
+    bookedSeatsData.forEach(bookedSeat => {
+      if (bookedSeat && !isNaN(bookedSeat.rowIndex) && !isNaN(bookedSeat.seatNumber)) {
         updatedSeats[bookedSeat.rowIndex][bookedSeat.seatNumber - 1].booked = true;
-      });
-      setSeats(updatedSeats);
+      }
+    });
+    setSeats(updatedSeats);
 
-      setBookedSeats(bookedSeatsData);
-    } catch (error) {
-      console.error('Error fetching booked seats:', error);
-    }
-  };
+    setBookedSeats(bookedSeatsData);
+  } catch (error) {
+    console.error('Error fetching booked seats:', error);
+  }
+};
+
 
   // Call the fetchBookedSeats function when the component mounts
   useEffect(() => {
     fetchBookedSeats();
-  },); // Ensure it runs when the theaterName changes
-  
+  },);
+
   return (
     <div className="theater">
       <h1>{theaterName} Theater Seat Booking</h1>
+      <h2>Movie: {movieName}</h2>
+
       <div className="seat-container">
         {seats.map((row, rowIndex) => (
           <div className="seat-row" key={rowIndex}>
@@ -121,7 +129,11 @@ function Booking() {
                 className={`seat ${seat.booked ? 'booked' : ''} ${seat.selected ? 'selected' : ''}`}
                 onClick={() => toggleSeat(rowIndex, seatIndex)}
               >
-                <FontAwesomeIcon icon={faCouch} />
+                <FontAwesomeIcon
+                  icon={faCouch}
+                  size="2x"
+                  className={`seat-icon ${seat.selected ? 'selected-icon' : ''}`}
+                />
               </div>
             ))}
           </div>
@@ -131,23 +143,14 @@ function Booking() {
       <div className="screen-view">
         <div className="screen-content">Screen View</div>
       </div>
+      <br/>
+      <br/>
 
-      <button
-        className="next-button"
-        onClick={handleNextClick}
-      >
-        Next ({totalCost} USD)
+      <button className="next-button" onClick={handleNextClick}>
+        Book Now ({totalCost} USD)
       </button>
-
-      <div className="booked-seats">
-        <h2>Already Booked Seats:</h2>
-        <ul>
-          {bookedSeats.map((seat, index) => (
-            <li key={index}>{`Row ${seat.rowIndex + 1}, Seat ${seat.seatNumber}`}</li>
-          ))}
-        </ul>
-      </div>
     </div>
+    
   );
 }
 

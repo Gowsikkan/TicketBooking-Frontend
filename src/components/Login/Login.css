@@ -1,0 +1,73 @@
+/* Whole Page Background */
+.main-container {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #ffc0cb, #ffa07a, #87cefa);
+    font-family: Arial, sans-serif; /* You can change the font family to your preference */
+    min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  
+  /* Login Container */
+  .login-container {
+    width: 100%; /* Specify a width if needed */
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #bbb3b3;
+    border-radius: 5px;
+    background-color:#fff;
+
+    box-shadow: #ccc;
+  }
+  
+  /* Login Title */
+  .login-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Login Input Fields */
+  .login-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  /* Login Button */
+  .login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f06e11;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #ead51b;
+  }
+  
+  /* New User Link */
+  .new-user-link {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #007bff;
+    background-color: #fff;
+  }
+  
+  .new-user-link:hover {
+    text-decoration: underline;
+  }

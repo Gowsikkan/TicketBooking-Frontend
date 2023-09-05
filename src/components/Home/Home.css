@@ -1,0 +1,69 @@
+/* Home.css (or your preferred stylesheet) */
+
+.Home    {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    min-height: 100vh;
+    width: 100%;    
+  } 
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding-left: 590px;
+  }
+  
+  input[type="text"],
+  select {
+    padding: 10px;
+    border: 2px solid #eff4fa; /* Border color */
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s; /* Add a transition effect for hover */
+  }
+  
+  input[type="text"]:hover,
+  select:hover {
+    border-color: #0056b3; /* Border color on hover */
+  }
+  
+  /* Style the select dropdown arrow */
+  select::-ms-expand {
+    display: none;
+  }
+  
+  /* Style for placeholder text in input */
+  input[type="text"]::placeholder,
+  select::placeholder {
+    color: #ccc;
+  }
+  
+  /* Add some background color to input boxes */
+  input[type="text"],
+  select {
+    background-color: #f9f9f9;
+  }
+  
+  /* Style the search button */
+  .search-button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Add a transition effect for hover */
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3; /* Background color on hover */
+  }
+  
+  /* Optional: Style the select dropdown arrow */
+  select::-ms-expand {
+    display: none;
+  }
+  

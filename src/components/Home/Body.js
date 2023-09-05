@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Body.css'
 
 function Body({ movie }) {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ console.log(sessionStorage.getItem('username'))
   return (
     <>
       <div class="box">
-        <img src="https://imgs.search.brave.com/HHajI7zgDWV-C9S3_dfKBFkXCxmFLuDdgDvoSDKphVw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nbWFydC5jb20v/ZmlsZXMvNi9UaWNr/ZXQtVHJhbnNwYXJl/bnQtSW1hZ2VzLVBO/Ry5wbmc" alt="" width={200} height={100}/>
+        <img src="https://imgs.search.brave.com/03210Cvv6jrii_D54BcqTXmRbG06JSipPxib9b_tLHg/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZs/YXRpY29uLmNvbS81/MTIvMS8xODU0LnBu/Zw" alt="" width={170} height={100}/>
         <h2>{movie.movie_name}</h2>
         <h3>@{movie.theatre_name}</h3>
         <h4>Location: {movie.theatre_location}</h4>

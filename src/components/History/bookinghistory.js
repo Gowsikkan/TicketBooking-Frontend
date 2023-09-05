@@ -6,7 +6,7 @@ function BookingHistory() {
 
   useEffect(() => {
     // Fetch data from the server
-    fetch('http://localhost:5000/history')
+    fetch('https://easytickets.onrender.com/history')
       .then((response) => response.json())
       .then((data) => {
         setHistoryData(data);

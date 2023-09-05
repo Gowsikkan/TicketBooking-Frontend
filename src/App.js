@@ -5,7 +5,6 @@ import Home from "./components/Home/Home"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Confimation from './components/Confirmation/Confimation';
 import BookingHistory from './components/History/bookinghistory';
-import Header from './components/Home/Header';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 

@@ -106,8 +106,8 @@ function Booking() {
   // Call the fetchBookedSeats function when the component mounts
   useEffect(() => {
     fetchBookedSeats();
-  }, [theaterName]); // Ensure it runs when the theaterName changes
-
+  },); // Ensure it runs when the theaterName changes
+  
   return (
     <div className="theater">
       <h1>{theaterName} Theater Seat Booking</h1>
